@@ -5,5 +5,7 @@ Vue.use(Router);
 
 export default new Router({
     mode:'history',
-    routes:[]
+    routes:[
+        {path: '/', component: Login},
+        {path: '/register',component: Register}]
 })
