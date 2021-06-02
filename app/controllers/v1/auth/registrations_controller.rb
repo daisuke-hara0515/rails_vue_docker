@@ -1,2 +1,2 @@
-class V1::Auth::RegistrationsController < ApplicationController
+class V1::Auth::RegistrationsController < DeviceTokenAuth::RegistrationsController
 end
