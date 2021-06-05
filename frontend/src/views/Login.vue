@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
     data() {
@@ -38,7 +39,17 @@ export default {
     },
     methods: {
         login() {
-            
+            axios.post('http://localhost:3000/v1/auth/sign_in',
+            {
+                email:this.email,
+                password:this.password
+            }).then(response => {
+                console.log(response);
+            }).catch(error => {
+                console.log(error);
+            });
+            this.email = ""
+            this.password = ""
         }
     }
 }
