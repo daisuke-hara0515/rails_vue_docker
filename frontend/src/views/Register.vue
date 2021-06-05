@@ -15,10 +15,8 @@
                 v-model="password"
             >
             <br><br>
-            <button @click="login">ログイン</button>
-            <button>新規ユーザー登録はこちらから</button>
-            <br><br>
-            <button>パスワードを忘れてしまったら</button>
+            <button @click="createUser">ユーザー作成</button>
         </div>
     </div>
 </template>
+
