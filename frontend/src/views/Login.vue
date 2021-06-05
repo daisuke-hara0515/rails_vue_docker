@@ -39,7 +39,11 @@ export default {
     },
     methods: {
         login() {
-            
+            axios.post('http://localhost:3000/v1/auth/sign_in',
+            {
+                email:this.email,
+                password:this.password
+            });
         }
     }
 }
