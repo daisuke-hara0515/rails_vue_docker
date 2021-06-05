@@ -20,9 +20,10 @@
             >
             <br><br>
             <button @click="login">ログイン</button>
-            <button>新規ユーザー登録はこちらから</button>
             <br><br>
-            <button>パスワードを忘れてしまったら</button>
+            <router-link to="/register">新規ユーザー登録はこちらから</router-link>
+            <br><br>
+            <router-link to="/">パスワードを忘れてしまったら</router-link>
         </div>
     </div>
 </template>
