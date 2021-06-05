@@ -43,7 +43,13 @@ export default {
             {
                 email:this.email,
                 password:this.password
+            }).then(response => {
+                console.log(response);
+            }).catch(error => {
+                console.log(error);
             });
+            this.email = ""
+            this.password = ""
         }
     }
 }
