@@ -11,6 +11,8 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 
     resource '*',
       headers: :any,
-      methods: [:get, :post, :put, :delete]
+      # exposeはレスポンスのHTTPヘッダの公開を許可するかどうかを指定する
+      expose: ['access-token','expiry','token-type','uid','client'],
+      methods: [:get, :post, :options, :delete, :put, :patch, :head]
   end
 end
