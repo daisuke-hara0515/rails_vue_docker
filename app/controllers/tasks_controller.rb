@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show update destroy ]
   # リクエストしてきたユーザーを認証する
-  before_action :authenticate_user!
+  before_action :authenticate_v1_user!
 
   # GET /tasks
   # GET /tasks.json
@@ -51,6 +51,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.permit(:name, :description).merge(user: current_user)
+      params.permit(:name, :description).merge(user: current_v1_user)
     end
 end
