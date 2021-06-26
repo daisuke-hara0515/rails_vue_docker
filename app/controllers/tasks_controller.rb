@@ -1,38 +1,41 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :update, :destroy]
-  # リクエストしてきたユーザーを認証する
-  before_action :authenticate_v1_user!
+  before_action :set_task, only: %i[ show update destroy ]
 
   # GET /tasks
+  # GET /tasks.json
   def index
     @tasks = Task.all
   end
 
   # GET /tasks/1
+  # GET /tasks/1.json
   def show
   end
 
   # POST /tasks
+  # POST /tasks.json
   def create
     @task = Task.new(task_params)
 
     if @task.save
-      render :show, status: :created
+      render :show, status: :created, location: @task
     else
       render json: @task.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /tasks/1
+  # PATCH/PUT /tasks/1.json
   def update
     if @task.update(task_params)
-      render :show, status: :ok
+      render :show, status: :ok, location: @task
     else
       render json: @task.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /tasks/1
+  # DELETE /tasks/1.json
   def destroy
     @task.destroy
   end
@@ -43,8 +46,8 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
+    # Only allow a list of trusted parameters through.
     def task_params
-      params.permit(:task, :description).merge(user: current_v1_user)
+      params.require(:task).permit(:name, :description, :user_id)
     end
 end
