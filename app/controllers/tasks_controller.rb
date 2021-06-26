@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show update destroy ]
+  # リクエストしてきたユーザーを認証する
+  before_action :authenticate_user!
 
   # GET /tasks
   # GET /tasks.json
@@ -17,8 +19,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
+    # リダイレクト先のURL(@task)の設定を削除する
     if @task.save
-      render :show, status: :created, location: @task
+      render :show, status: :created # location: @task
     else
       render json: @task.errors, status: :unprocessable_entity
     end
@@ -48,6 +51,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :description, :user_id)
+      params.permit(:name, :description).merge(user: current_user)
     end
 end
