@@ -6,13 +6,10 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     @tasks = Task.all
-
-    render json: @tasks
   end
 
   # GET /tasks/1
   def show
-    render json: @task
   end
 
   # POST /tasks
@@ -20,7 +17,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      render json: @task, status: :created, location: @task
+      render :show, status: :created
     else
       render json: @task.errors, status: :unprocessable_entity
     end
@@ -29,7 +26,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      render json: @task
+      render :show, status: :ok
     else
       render json: @task.errors, status: :unprocessable_entity
     end
@@ -48,6 +45,6 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:name, :description, :user_id)
+      params.permit(:task, :description).merge(user: current_user)
     end
 end
