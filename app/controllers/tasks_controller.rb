@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy]
+  # リクエストしてきたユーザーを認証する
   before_action :authenticate_user!
 
   # GET /tasks
