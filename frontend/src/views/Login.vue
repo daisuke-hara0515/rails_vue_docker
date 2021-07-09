@@ -40,7 +40,7 @@ export default {
     },
     methods: {
         login() {
-            axios.post('http://localhost:3000/v1/auth/sign_in',
+            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10',
             {
                 email:this.email,
                 password:this.password
