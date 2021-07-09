@@ -39,10 +39,11 @@ export default {
     },
     methods: {
         createUser() {
-            axios.post('http://localhost:3000/v1/auth',
+            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10',
             {
                 email: this.email,
-                password: this.password
+                password: this.password,
+                returnSecureToken: true
             }).then(response => {
                 console.log(response);
             }).catch(error => {
