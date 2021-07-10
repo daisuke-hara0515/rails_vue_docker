@@ -28,7 +28,7 @@ export default new Vuex.Store({
             });
         },
         register({ commit },authData) {
-            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10',
+            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10',
             {
                 email:authData.email,
                 password:authData.password,
