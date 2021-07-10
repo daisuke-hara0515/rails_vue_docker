@@ -21,15 +21,13 @@
                     v-model="password"
                 >
                 <br><br>
-                <button @click="createUser">ユーザー登録</button>
+                <button @click="register">ユーザー登録</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
     data() {
         return {
@@ -38,17 +36,11 @@ export default {
         };
     },
     methods: {
-        createUser() {
-            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10',
-            {
+        register() {
+            this.$store.dispatch('register',{
                 email: this.email,
-                password: this.password,
-                returnSecureToken: true
-            }).then(response => {
-                console.log(response);
-            }).catch(error => {
-                console.log(error);
-            });
+                password: this.password
+            })
             this.email = "",
             this.password = ""
         }
