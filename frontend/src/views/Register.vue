@@ -21,7 +21,7 @@
                     v-model="password"
                 >
                 <br><br>
-                <button @click="createUser">ユーザー登録</button>
+                <button @click="register">ユーザー登録</button>
             </div>
         </div>
     </div>
