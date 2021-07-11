@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
 
+
 Vue.use(Router);
 
 export default new Router({
@@ -11,7 +12,10 @@ export default new Router({
     routes:[
         {
             path: '/',
-            component: Home
+            component: Home,
+            beforeEnter(to,from,next) {
+                
+            }
         },
         {
             path: '/login',
