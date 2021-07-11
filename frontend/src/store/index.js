@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from "axios";
-import router from '../router'
+import router from '../router';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -26,6 +27,10 @@ export default new Vuex.Store({
                 returnSecureToken: true
             }).then(response => {
                 commit('updateIdToken',response.data.idToken)
+                // setTimeoutでトークンをリフレッシュするコード
+                setTimeout({} => {
+                    axios
+                }, response.data.expiresIn * 1000)
                 router.push('/')
                 console.log(response);
             }).catch(error => {
