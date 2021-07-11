@@ -29,7 +29,7 @@ export default new Vuex.Store({
                 commit('updateIdToken',response.data.idToken)
                 // setTimeoutでトークンをリフレッシュするコード
                 setTimeout({} => {
-                    axios
+                    axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10');
                 }, response.data.expiresIn * 1000)
                 router.push('/')
                 console.log(response);
