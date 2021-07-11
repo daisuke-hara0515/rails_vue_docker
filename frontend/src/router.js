@@ -23,7 +23,14 @@ export default new Router({
         },
         {
             path: '/login',
-            component: Login
+            component: Login,
+            beforeEnter(to,from,next) {
+                if (store.getters.idToken) {
+                    next('/');
+                } else {
+                    next();
+                }
+            }
         },
         {
             path: '/register',
