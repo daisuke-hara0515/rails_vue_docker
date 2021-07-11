@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from "axios";
+import router from '../router'
 
 Vue.use(Vuex);
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
                 returnSecureToken: true
             }).then(response => {
                 commit('updateIdToken',response.data.idToken)
+                router.push('/')
                 console.log(response);
             }).catch(error => {
                 console.log(error);
