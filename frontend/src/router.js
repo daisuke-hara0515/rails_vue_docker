@@ -9,7 +9,17 @@ Vue.use(Router);
 export default new Router({
     mode:'history',
     routes:[
-        {path: '/', component: Home},
-        {path: '/login', component: Login},
-        {path: '/register',component: Register}]
+        {
+            path: '/',
+            component: Home
+        },
+        {
+            path: '/login',
+            component: Login
+        },
+        {
+            path: '/register',
+            component: Register
+        }
+    ]
 })
