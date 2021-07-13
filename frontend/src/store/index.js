@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from "axios";
 import router from '../router';
-import axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -28,7 +27,7 @@ export default new Vuex.Store({
             }).then(response => {
                 commit('updateIdToken',response.data.idToken)
                 // setTimeoutでトークンをリフレッシュするコード
-                setTimeout({} => {
+                setTimeout(() => {
                     axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10');
                 }, response.data.expiresIn * 1000)
                 router.push('/')
