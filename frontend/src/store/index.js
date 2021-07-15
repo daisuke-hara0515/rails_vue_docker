@@ -18,7 +18,7 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        login({ commit },authData) {
+        login({ commit,dispatch },authData) {
             axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10',
             {
                 email:authData.email,
@@ -28,16 +28,16 @@ export default new Vuex.Store({
                 commit('updateIdToken',response.data.idToken)
                 // setTimeoutでトークンをリフレッシュするコード
                 setTimeout(() => {
-                    
+                    dispatch('refreshIdToken',response.data.refreshToken);
                 }, response.data.expiresIn * 1000)
                 router.push('/');
             });
         },
-        refreshIdToken({ commit }){
+        refreshIdToken({ commit }, refreshToken){
             axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10'
                     , {
                         grant_type: 'refresh_token',
-                        refresh_token: response.data.refreshToken
+                        refresh_token: refreshToken
                       }
                       // 応答コード
                     ).then(response => {
