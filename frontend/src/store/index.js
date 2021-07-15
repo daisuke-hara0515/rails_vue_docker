@@ -33,7 +33,7 @@ export default new Vuex.Store({
                 router.push('/');
             });
         },
-        refreshIdToken({ commit }, refreshToken){
+        refreshIdToken({ commit, dispatch }, refreshToken){
             axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10'
                     , {
                         grant_type: 'refresh_token',
@@ -41,7 +41,7 @@ export default new Vuex.Store({
                       }
                       // 応答コード
                     ).then(response => {
-                        commit("updateIdToken",response.data.id_token);
+                        commit("updateIdToken",response.data.idToken);
                         setTimeout(() => {
                             dispatch('refreshIdToken', response.data.refresh_token);
                         }, response.data.expires_in * 1000)
