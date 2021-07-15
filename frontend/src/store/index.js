@@ -28,7 +28,11 @@ export default new Vuex.Store({
                 commit('updateIdToken',response.data.idToken)
                 // setTimeoutでトークンをリフレッシュするコード
                 setTimeout(() => {
-                    axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10');
+                    axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10'
+                    , {
+                        grant_type: 'refresh_token',
+                        refresh_token: response.data.refreshToken
+                    });
                 }, response.data.expiresIn * 1000)
                 router.push('/');
             });
