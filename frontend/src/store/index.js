@@ -32,6 +32,10 @@ export default new Vuex.Store({
                     , {
                         grant_type: 'refresh_token',
                         refresh_token: response.data.refreshToken
+                      }
+                      // 応答コード
+                    ).then(response => {
+                        commit("updateIdToken",response.data.id_token);
                     });
                 }, response.data.expiresIn * 1000)
                 router.push('/');
