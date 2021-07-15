@@ -42,6 +42,9 @@ export default new Vuex.Store({
                       // 応答コード
                     ).then(response => {
                         commit("updateIdToken",response.data.id_token);
+                        setTimeout(() => {
+                            dispatch('refreshIdToken', response.data.refresh_token);
+                        }, response.data.expires_in * 1000)
                     });
         },
         register({ commit },authData) {
