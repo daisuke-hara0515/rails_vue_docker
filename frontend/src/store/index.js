@@ -18,6 +18,10 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        // ログイン時に実行されるようにする関数(autoLogin)
+        autoLogin() {
+
+        },
         login({ commit,dispatch },authData) {
             axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10',
             {
