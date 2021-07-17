@@ -33,6 +33,8 @@ export default new Vuex.Store({
                 password:authData.password,
                 returnSecureToken: true
             }).then(response => {
+                // 現在の時刻をnowという変数で定義する
+                const now = new Date();
                 commit('updateIdToken',response.data.idToken)
                 // setTimeoutでトークンをリフレッシュするコード
                 setTimeout(() => {
