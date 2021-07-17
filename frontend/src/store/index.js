@@ -19,7 +19,7 @@ export default new Vuex.Store({
     },
     actions: {
         // ログイン時に実行されるようにする関数(autoLogin)
-        autoLogin( commit ) {
+        autoLogin({ commit }) {
             const idToken = localStorage.getItem('idToken');
             // idTokenが無かったらそのまま何もしない
             if (!idToken) return;
@@ -36,7 +36,7 @@ export default new Vuex.Store({
                 // 現在の時刻をnowという変数で定義する
                 const now = new Date();
                 // 有効期限を定義する。now.getTime()で1970/01/01から現在までの経過時間を取得し、それに有効期限の時刻を足す
-                const expiryTimeMs = now.getTime() + response.date.expiresIn * 1000;
+                const expiryTimeMs = now.getTime() + response.data.expiresIn * 1000;
                 commit('updateIdToken',response.data.idToken);
                 // localStorageにidTokenを渡すためのコード
                 localStorage.setItem('idToken', response.data.idToken);
