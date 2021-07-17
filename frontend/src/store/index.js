@@ -35,7 +35,13 @@ export default new Vuex.Store({
             }).then(response => {
                 // 現在の時刻をnowという変数で定義する
                 const now = new Date();
-                commit('updateIdToken',response.data.idToken)
+                // 有効期限を定義する。now.getTime()で1970/01/01から現在までの経過時間を取得し、それに有効期限の時刻を足す
+                const expiryTimeMs = now.getTime() + response.date.expiresIn * 1000;
+                commit('updateIdToken',response.data.idToken);
+                // localStorageにidTokenを渡すためのコード
+                localStorage.setItem('idToken', response.data.idToken);
+                // localStorageに有効期限を残しておく
+                localStorage.setItem('expiryTimeMs', expiryTimeMs);
                 // setTimeoutでトークンをリフレッシュするコード
                 setTimeout(() => {
                     dispatch('refreshIdToken',response.data.refreshToken);
@@ -52,8 +58,6 @@ export default new Vuex.Store({
                       // 応答コード
                     ).then(response => {
                         commit("updateIdToken",response.data.idToken);
-                        // localStorageにidTokenを渡すためのコード
-                        localStorage.setItem('idToken', response.data.idToken);
                         setTimeout(() => {
                             dispatch('refreshIdToken', response.data.refresh_token);
                         }, response.data.expires_in * 1000)
