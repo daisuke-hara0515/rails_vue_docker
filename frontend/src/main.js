@@ -1,9 +1,12 @@
+// main.jsがVueアプリケーション実行時に最初に読み込まれる
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
 Vue.config.productionTip = false
+
+store.dispatch('autoLogin');
 
 new Vue({
   router,
