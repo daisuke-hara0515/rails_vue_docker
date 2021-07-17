@@ -19,10 +19,18 @@ export default new Vuex.Store({
     },
     actions: {
         // ログイン時に実行されるようにする関数(autoLogin)
-        autoLogin({ commit }) {
+        autoLogin({ commit, dispatch }) {
             const idToken = localStorage.getItem('idToken');
             // idTokenが無かったらそのまま何もしない
             if (!idToken) return;
+            // autoLogin実行時、localStorageにあるexpiryTimeMsを取り出して、トークンが有効期限内なのかどうか調べる
+            const now = new Date();
+            const expiryTimeMs = localStorage.getItem('expiryTimeMs');
+            // 有効期限をboolean型で判定する。
+            const isExpired = now.getTime() >= expiryTimeMs;
+            if (isExpired) {
+                dispatch('refreshIdToken');
+            }
             // idTokenがあったらupdateIdToken関数を実行する
             commit('updateIdToken',idToken);
         },
