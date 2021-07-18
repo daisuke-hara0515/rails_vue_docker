@@ -92,6 +92,9 @@ export default new Vuex.Store({
                 commit('updateIdToken',response.data.idToken)
                 router.push('/')
             });
+        },
+        setAuthData() {
+            
         }
     }
 });
