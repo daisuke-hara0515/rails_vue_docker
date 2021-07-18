@@ -33,6 +33,8 @@ export default new Vuex.Store({
                 // refreshTokenを引数として、refreshIdToken関数を実行する
                 dispatch('refreshIdToken',refreshToken);
             } else {
+                // 有効期限から現在の時刻を差し引いて、あと何分後に有効期限がくるのかを定義する
+                const expiresInMs = expiryTimeMs - now.getTime();
                 commit('updateIdToken', idToken);
             }
             // idTokenがあったらupdateIdToken関数を実行する
