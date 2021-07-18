@@ -30,7 +30,8 @@ export default new Vuex.Store({
             const isExpired = now.getTime() >= expiryTimeMs;
             const refreshToken = localStorage.getItem('refreshToken');
             if (isExpired) {
-                dispatch('refreshIdToken');
+                // refreshTokenを引数として、refreshIdToken関数を実行する
+                dispatch('refreshIdToken',refreshToken);
             }
             // idTokenがあったらupdateIdToken関数を実行する
             commit('updateIdToken',idToken);
