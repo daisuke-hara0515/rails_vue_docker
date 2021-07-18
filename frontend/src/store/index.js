@@ -43,7 +43,7 @@ export default new Vuex.Store({
             // idTokenがあったらupdateIdToken関数を実行する
             commit('updateIdToken',idToken);
         },
-        login({ commit,dispatch },authData) {
+        login({ dispatch },authData) {
             axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10',
             {
                 email:authData.email,
@@ -58,7 +58,7 @@ export default new Vuex.Store({
                 router.push('/');
             });
         },
-        refreshIdToken({ commit, dispatch }, refreshToken){
+        refreshIdToken({ dispatch }, refreshToken){
             axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10'
                     , {
                         grant_type: 'refresh_token',
@@ -66,20 +66,25 @@ export default new Vuex.Store({
                       }
                       // 応答コード
                     ).then(response => {
-                        commit("updateIdToken",response.data.idToken);
-                        setTimeout(() => {
-                            dispatch('refreshIdToken', response.data.refresh_token);
-                        }, response.data.expires_in * 1000)
+                        dispatch('setAuthData',{
+                            idToken: response.data.idToken,
+                            expiresIn: response.data.expiresIn,
+                            refreshToken: response.data.refreshToken
+                        });
                     });
         },
-        register({ commit },authData) {
+        register({ dispatch },authData) {
             axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10',
             {
                 email:authData.email,
                 password:authData.password,
                 returnSecureToken: true
             }).then(response => {
-                commit('updateIdToken',response.data.idToken)
+                dispatch('setAuthData',{
+                    idToken: response.data.idToken,
+                    expiresIn: response.data.expiresIn,
+                    refreshToken: response.data.refreshToken
+                });
                 router.push('/')
             });
         },
