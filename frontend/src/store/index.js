@@ -50,21 +50,6 @@ export default new Vuex.Store({
                 password:authData.password,
                 returnSecureToken: true
             }).then(response => {
-                // 現在の時刻をnowという変数で定義する
-                const now = new Date();
-                // 有効期限を定義する。now.getTime()で1970/01/01から現在までの経過時間を取得し、それに有効期限の時刻を足す
-                const expiryTimeMs = now.getTime() + response.data.expiresIn * 1000;
-                commit('updateIdToken',response.data.idToken);
-                // localStorageにidTokenを渡すためのコード
-                localStorage.setItem('idToken', response.data.idToken);
-                // localStorageに有効期限を残しておく
-                localStorage.setItem('expiryTimeMs', expiryTimeMs);
-                // localStorageにリクエストで返ってきた更新トークンを保存する
-                localStorage.setItem('refreshToken',response.data.refreshToken);
-                // setTimeoutでトークンをリフレッシュするコード
-                setTimeout(() => {
-                    dispatch('refreshIdToken',response.data.refreshToken);
-                }, response.data.expiresIn * 1000)
                 router.push('/');
             });
         },
@@ -93,8 +78,22 @@ export default new Vuex.Store({
                 router.push('/')
             });
         },
-        setAuthData() {
-            
+        setAuthData({ commit, dispatch }) {
+            // 現在の時刻をnowという変数で定義する
+            const now = new Date();
+            // 有効期限を定義する。now.getTime()で1970/01/01から現在までの経過時間を取得し、それに有効期限の時刻を足す
+            const expiryTimeMs = now.getTime() + response.data.expiresIn * 1000;
+            commit('updateIdToken',response.data.idToken);
+            // localStorageにidTokenを渡すためのコード
+            localStorage.setItem('idToken', response.data.idToken);
+            // localStorageに有効期限を残しておく
+            localStorage.setItem('expiryTimeMs', expiryTimeMs);
+            // localStorageにリクエストで返ってきた更新トークンを保存する
+            localStorage.setItem('refreshToken',response.data.refreshToken);
+            // setTimeoutでトークンをリフレッシュするコード
+            setTimeout(() => {
+                dispatch('refreshIdToken',response.data.refreshToken);
+            }, response.data.expiresIn * 1000)
         }
     }
 });
