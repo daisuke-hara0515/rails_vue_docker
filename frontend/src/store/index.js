@@ -78,21 +78,21 @@ export default new Vuex.Store({
                 router.push('/')
             });
         },
-        setAuthData({ commit, dispatch }) {
+        setAuthData({ commit, dispatch }, authData) {
             // 現在の時刻をnowという変数で定義する
             const now = new Date();
             // 有効期限を定義する。now.getTime()で1970/01/01から現在までの経過時間を取得し、それに有効期限の時刻を足す
-            const expiryTimeMs = now.getTime() + response.data.expiresIn * 1000;
-            commit('updateIdToken',response.data.idToken);
+            const expiryTimeMs = now.getTime() + authData.expiresIn * 1000;
+            commit('updateIdToken',authData.idToken);
             // localStorageにidTokenを渡すためのコード
-            localStorage.setItem('idToken', response.data.idToken);
+            localStorage.setItem('idToken', authData.idToken);
             // localStorageに有効期限を残しておく
             localStorage.setItem('expiryTimeMs', expiryTimeMs);
             // localStorageにリクエストで返ってきた更新トークンを保存する
-            localStorage.setItem('refreshToken',response.data.refreshToken);
+            localStorage.setItem('refreshToken',authData.refreshToken);
             // setTimeoutでトークンをリフレッシュするコード
             setTimeout(() => {
-                dispatch('refreshIdToken',response.data.refreshToken);
+                dispatch('refreshIdToken',authData.refreshToken);
             }, response.data.expiresIn * 1000)
         }
     }
