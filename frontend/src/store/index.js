@@ -50,6 +50,11 @@ export default new Vuex.Store({
                 password:authData.password,
                 returnSecureToken: true
             }).then(response => {
+                dispatch('setAuthData',{
+                    idToken: response.data.idToken,
+                    expiresIn: response.data.expiresIn,
+                    refreshToken: response.data.refreshToken
+                });
                 router.push('/');
             });
         },
