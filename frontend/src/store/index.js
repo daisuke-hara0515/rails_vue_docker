@@ -90,9 +90,7 @@ export default new Vuex.Store({
                 returnSecureToken: true
             }).then(response => {
                 commit('updateIdToken',response.data.idToken)
-                console.log(response);
-            }).catch(error => {
-                console.log(error);
+                router.push('/')
             });
         }
     }
