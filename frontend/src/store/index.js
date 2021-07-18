@@ -28,6 +28,7 @@ export default new Vuex.Store({
             const expiryTimeMs = localStorage.getItem('expiryTimeMs');
             // 有効期限をboolean型で判定する。
             const isExpired = now.getTime() >= expiryTimeMs;
+            const refreshToken = localStorage.getItem('refreshToken');
             if (isExpired) {
                 dispatch('refreshIdToken');
             }
