@@ -67,9 +67,9 @@ export default new Vuex.Store({
                       // 応答コード
                     ).then(response => {
                         dispatch('setAuthData',{
-                            idToken: response.data.idToken,
-                            expiresIn: response.data.expiresIn,
-                            refreshToken: response.data.refreshToken
+                            idToken: response.data.id_Token,
+                            expiresIn: response.data.expires_in,
+                            refreshToken: response.data.refresh_token
                         });
                     });
         },
