@@ -93,7 +93,7 @@ export default new Vuex.Store({
             // setTimeoutでトークンをリフレッシュするコード
             setTimeout(() => {
                 dispatch('refreshIdToken',authData.refreshToken);
-            }, response.data.expiresIn * 1000)
+            }, authData.expiresIn * 1000)
         }
     }
 });
