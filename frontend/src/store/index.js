@@ -35,6 +35,9 @@ export default new Vuex.Store({
             } else {
                 // 有効期限から現在の時刻を差し引いて、あと何分後に有効期限がくるのかを定義する
                 const expiresInMs = expiryTimeMs - now.getTime();
+                setTimeout(() => {
+                    dispatch('refreshIdToken', refreshToken);
+                }, expiresInMs);
                 commit('updateIdToken', idToken);
             }
             // idTokenがあったらupdateIdToken関数を実行する
