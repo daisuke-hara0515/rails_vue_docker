@@ -32,6 +32,8 @@ export default new Vuex.Store({
             if (isExpired) {
                 // refreshTokenを引数として、refreshIdToken関数を実行する
                 dispatch('refreshIdToken',refreshToken);
+            } else {
+                commit('updateIdToken', idToken);
             }
             // idTokenがあったらupdateIdToken関数を実行する
             commit('updateIdToken',idToken);
