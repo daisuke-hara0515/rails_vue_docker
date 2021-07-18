@@ -50,6 +50,8 @@ export default new Vuex.Store({
                 localStorage.setItem('idToken', response.data.idToken);
                 // localStorageに有効期限を残しておく
                 localStorage.setItem('expiryTimeMs', expiryTimeMs);
+                // localStorageにリクエストで返ってきた更新トークンを保存する
+                localStorage.setItem('refreshToken',response.data.refreshToken);
                 // setTimeoutでトークンをリフレッシュするコード
                 setTimeout(() => {
                     dispatch('refreshIdToken',response.data.refreshToken);
