@@ -10,3 +10,14 @@
     cursor: pointer;
 }
 </style>
+
+<script>
+export default {
+    methods: {
+        logout() {
+            // store/index.jsのlogout関数を実行させるようにする
+            this.$store.dispatch('logout');
+        }
+    }
+};
+</script>
