@@ -6,10 +6,13 @@ import store from './store';
 
 Vue.config.productionTip = false
 
-store.dispatch('autoLogin');
+// autologinを実行した後に、new Vueするように非同期処理を行う
+store.dispatch('autoLogin').then(() => {
+  new Vue({
+    router,
+    store,
+    render: h => h(App),
+  }).$mount('#app')
+});
 
-new Vue({
-  router,
-  store,
-  render: h => h(App),
-}).$mount('#app')
+
