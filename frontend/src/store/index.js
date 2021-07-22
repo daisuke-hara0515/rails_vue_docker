@@ -63,7 +63,7 @@ export default new Vuex.Store({
             localStorage.removeItem('idToken');
             localStorage.removeItem('expiryTimeMs');
             localStorage.removeItem('refreshToken');
-
+            router.replace('/login');
         },
         async refreshIdToken({ dispatch }, refreshToken){
             await axios.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyDUTdIZMfLPAomby_JvC3FYf8ChEugcZ10'
