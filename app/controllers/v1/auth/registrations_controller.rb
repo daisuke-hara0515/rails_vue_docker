@@ -24,6 +24,9 @@ class V1::Auth::RegistrationsController < DeviceTokenAuth::RegistrationsControll
         request.headers['Authorization']&.split&.last
     end
 
-    
+    def token
+        # ||はor演算子なのでparamsかtoken_from~のどちらかを返す
+        params[:token] || token_from_request_headers
+    end
 
 end
