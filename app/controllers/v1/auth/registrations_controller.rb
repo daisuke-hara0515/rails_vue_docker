@@ -5,5 +5,7 @@ class V1::Auth::RegistrationsController < DeviceTokenAuth::RegistrationsControll
     def create
         # Googleのx509証明書をダウンロードする
         FirebaseIdToken::Certificates.request
+        # ペイロードが空白だった場合、意図的にエラー(ArgumentError)を発生させる
+        raise ArgumentError, 'BadRequest Parameter' if payload.blank?
 
 end
