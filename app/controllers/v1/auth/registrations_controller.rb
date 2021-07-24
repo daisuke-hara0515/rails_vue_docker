@@ -17,4 +17,13 @@ class V1::Auth::RegistrationsController < DeviceTokenAuth::RegistrationsControll
         end
     end
 
+    private
+
+    # ぼっち演算子を使ってリクエストヘッダーのAuthorizationがあればsplit以下を実行
+    def token_from_request_headers
+        request.headers['Authorization']&.split&.last
+    end
+
+    
+
 end
