@@ -1,3 +1,5 @@
+# 参照コードhttps://github.com/penguinwokrs/firebase-auth-rails#example-code
+
 class V1::Auth::RegistrationsController < DeviceTokenAuth::RegistrationsController
     # 定義したbefore_actionを使いたくない時はskip_before_action
     skip_before_action :authenticate_user
@@ -29,4 +31,8 @@ class V1::Auth::RegistrationsController < DeviceTokenAuth::RegistrationsControll
         params[:token] || token_from_request_headers
     end
 
+    # payloadがfalseか未定義なら、@payloadにFirebaseIdToken〜を代入する
+    def payload
+        @payload ||= FirebaseIdToken::Signature.verify token
+    end
 end
