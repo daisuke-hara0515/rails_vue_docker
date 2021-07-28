@@ -92,6 +92,9 @@ export default new Vuex.Store({
                     expiresIn: response.data.expiresIn,
                     refreshToken: response.data.refreshToken
                 });
+            axios.post('http://localhost:3000/v1/auth/registrations',{
+                idToken: localStorage.idToken,
+           });
                 router.push('/')
             });
         },
