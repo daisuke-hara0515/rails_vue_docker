@@ -22,6 +22,10 @@ module V1
 
             private
 
+            def sign_up_params
+                params.require(:registration).permit(:user_name, :display_name, :idToken)
+            end
+
             # ぼっち演算子を使ってリクエストヘッダーのAuthorizationがあればsplit以下を実行
             def token_from_request_headers
                 request.headers['Authorization']&.split&.last
