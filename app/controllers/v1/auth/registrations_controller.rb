@@ -1,7 +1,7 @@
 # 参照コードhttps://github.com/penguinwokrs/firebase-auth-rails#example-code
 module V1
     module Auth
-        class V1::Auth::RegistrationsController < DeviceTokenAuth::RegistrationsController
+        class V1::Auth::RegistrationsController < ApplicationController
     # 定義したbefore_actionを使いたくない時はskip_before_action
             skip_before_action :authenticate_user
             
