@@ -33,7 +33,7 @@ module V1
 
             def token
                 # ||はor演算子なのでparamsかtoken_from~のどちらかを返す
-                params[:token] || token_from_request_headers
+                params[:idToken] || token_from_request_headers
             end
 
             # payloadがfalseか未定義なら、@payloadにFirebaseIdToken〜を代入する
