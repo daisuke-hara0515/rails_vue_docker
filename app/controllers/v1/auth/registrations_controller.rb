@@ -1,7 +1,7 @@
 # 参照コードhttps://github.com/penguinwokrs/firebase-auth-rails#example-code
 module V1
     module Auth
-        class V1::Auth::RegistrationsController < DeviceTokenAuth::RegistrationsController
+        class V1::Auth::RegistrationsController < ApplicationController
     # 定義したbefore_actionを使いたくない時はskip_before_action
             skip_before_action :authenticate_user
             
@@ -22,6 +22,10 @@ module V1
 
             private
 
+            def sign_up_params
+                params.require(:registration).permit(:user_name, :display_name, :idToken)
+            end
+
             # ぼっち演算子を使ってリクエストヘッダーのAuthorizationがあればsplit以下を実行
             def token_from_request_headers
                 request.headers['Authorization']&.split&.last
@@ -29,7 +33,7 @@ module V1
 
             def token
                 # ||はor演算子なのでparamsかtoken_from~のどちらかを返す
-                params[:token] || token_from_request_headers
+                params[:idToken] || token_from_request_headers
             end
 
             # payloadがfalseか未定義なら、@payloadにFirebaseIdToken〜を代入する
