@@ -1,6 +1,6 @@
 FactoryBot.define do
-    factory :user do
+    factory :test, class: User do
         id {1}
-        uid {"nEZJSOUiOZbkeY3j1BwgFIvQRyU2"}
+        uid {"WGT08usUk0RQkEgjERa4jew6Aze2"}
     end
 end
