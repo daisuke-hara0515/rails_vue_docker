@@ -200,6 +200,7 @@ DEPENDENCIES
   firebase-auth-rails
   firebase_id_token (~> 2.4.0)
   jbuilder (~> 2.7)
+  jwt
   listen (~> 3.2)
   mysql2 (>= 0.4.4)
   puma (~> 4.1)
