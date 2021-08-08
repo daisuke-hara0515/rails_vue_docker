@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe 'POST /v1/auth/registrations' do
-    it 'ペイロードがblankだった場合、ArgumentErrorを返すこと' do
+    it 'idTokenが正しくない場合、FirebaseIdToken.verify tokenの結果がnilになること' do
         # テスト内容
         # payload = nilでいいのか？
         # 
