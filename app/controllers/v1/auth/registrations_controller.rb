@@ -42,5 +42,13 @@ module V1
                 @payload ||= FirebaseIdToken::Signature.verify token
             end
         end
+
+        # Firebaseへの通信をまとめたクラス
+        class FirebaseVerifier
+            def verify(token)
+                FirebaseIdToken::Certificates.request
+                FirebaseIdToken::Signature.verify token
+            end
+        end
     end
 end
