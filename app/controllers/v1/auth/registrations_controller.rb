@@ -37,6 +37,7 @@ module V1
             end
 
             # payloadがfalseか未定義なら、@payloadにFirebaseIdToken〜を代入する
+            # tokenが改竄されていると、nilを返すのでpayload.blank?でtrueになる
             def payload
                 @payload ||= FirebaseIdToken::Signature.verify token
             end
