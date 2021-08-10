@@ -15,6 +15,10 @@ module V1
                 end
             end
 
+            def payload
+                @payload ||= self.class.verifier.verify token
+            end
+
             def create
                 # Googleのx509証明書をダウンロードする
                 FirebaseIdToken::Certificates.request
@@ -48,9 +52,9 @@ module V1
 
             # payloadがfalseか未定義なら、@payloadにFirebaseIdToken〜を代入する
             # tokenが改竄されていると、nilを返すのでpayload.blank?でtrueになる
-            def payload
-                @payload ||= FirebaseIdToken::Signature.verify token
-            end
+            # def payload
+            #     @payload ||= FirebaseIdToken::Signature.verify token
+            # end
         end
 
         # Firebase関連をまとめたクラス
