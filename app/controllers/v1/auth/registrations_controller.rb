@@ -20,8 +20,7 @@ module V1
             end
 
             def create
-                # Googleのx509証明書をダウンロードする
-                FirebaseIdToken::Certificates.request
+                # FirebaseIdToken::Certificates.request
                 # ペイロードが空白だった場合、意図的にエラー(ArgumentError)を発生させる
                 raise ArgumentError, 'BadRequest Parameter' if payload.blank?
                 # 認証OKの時、レスポンスのペイロードにあるsubの中身を条件にユーザーを検索。
@@ -60,7 +59,9 @@ module V1
         # Firebase関連をまとめたクラス
         class FirebaseVerifier
             def verify(token)
+                # Googleのx509証明書をダウンロード・確認
                 FirebaseIdToken::Certificates.request
+                # トークンの確認を行う
                 FirebaseIdToken::Signature.verify token
             end
         end
