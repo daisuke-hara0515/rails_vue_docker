@@ -5,6 +5,16 @@ module V1
     # 定義したbefore_actionを使いたくない時はskip_before_action
             skip_before_action :authenticate_user
             
+            class << self
+                def verifier
+                    @verifier ||= FirebaseVerifier.new
+                end
+
+                def verifier=(verifier)
+                    @verifier = verifier
+                end
+            end
+
             def create
                 # Googleのx509証明書をダウンロードする
                 FirebaseIdToken::Certificates.request
@@ -43,7 +53,7 @@ module V1
             end
         end
 
-        # Firebaseへの通信をまとめたクラス
+        # Firebase関連をまとめたクラス
         class FirebaseVerifier
             def verify(token)
                 FirebaseIdToken::Certificates.request
