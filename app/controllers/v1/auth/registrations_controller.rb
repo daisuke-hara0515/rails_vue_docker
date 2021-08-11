@@ -5,9 +5,21 @@ module V1
     # 定義したbefore_actionを使いたくない時はskip_before_action
             skip_before_action :authenticate_user
             
+            class << self
+                def verifier
+                    @verifier ||= FirebaseVerifier.new
+                end
+
+                def verifier=(verifier)
+                    @verifier = verifier
+                end
+            end
+
+            def payload
+                @payload ||= self.class.verifier.verify token
+            end
+
             def create
-                # Googleのx509証明書をダウンロードする
-                FirebaseIdToken::Certificates.request
                 # ペイロードが空白だった場合、意図的にエラー(ArgumentError)を発生させる
                 raise ArgumentError, 'BadRequest Parameter' if payload.blank?
                 # 認証OKの時、レスポンスのペイロードにあるsubの中身を条件にユーザーを検索。
@@ -38,8 +50,18 @@ module V1
 
             # payloadがfalseか未定義なら、@payloadにFirebaseIdToken〜を代入する
             # tokenが改竄されていると、nilを返すのでpayload.blank?でtrueになる
-            def payload
-                @payload ||= FirebaseIdToken::Signature.verify token
+            # def payload
+            #     @payload ||= FirebaseIdToken::Signature.verify token
+            # end
+        end
+
+        # Firebase関連をまとめたクラス
+        class FirebaseVerifier
+            def verify(token)
+                # Googleのx509証明書をダウンロード・確認
+                FirebaseIdToken::Certificates.request
+                # トークンの確認を行う
+                FirebaseIdToken::Signature.verify token
             end
         end
     end
