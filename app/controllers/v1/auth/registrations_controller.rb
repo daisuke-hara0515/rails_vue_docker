@@ -20,7 +20,6 @@ module V1
             end
 
             def create
-                # FirebaseIdToken::Certificates.request
                 # ペイロードが空白だった場合、意図的にエラー(ArgumentError)を発生させる
                 raise ArgumentError, 'BadRequest Parameter' if payload.blank?
                 # 認証OKの時、レスポンスのペイロードにあるsubの中身を条件にユーザーを検索。
