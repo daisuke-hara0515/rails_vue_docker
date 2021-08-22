@@ -1,6 +1,6 @@
 module V1
   module Auth
-    class TasksController < V1::Auth::ApplicationController
+    class TasksController < ApplicationController
       def index
         render json: current_user.tasks, status: 200
       end

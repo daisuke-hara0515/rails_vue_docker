@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     # mount_devise_token_auth_for 'User', at: 'auth'
-    resources :tasks, only: %i(index)
     namespace 'auth' do
+      resources :tasks, only: %i(index)
       post 'registrations' => 'registrations#create'
     end
   end
