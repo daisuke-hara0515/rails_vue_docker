@@ -7,13 +7,19 @@ module V1
 
       def create
         @task = Task.new(task_params)
+        @task.user_id = current_user.id
         if @task.save
-          render json: "create new task.\n", status: 200
+          render json: "create new task", status: 200
         else
-          render json: "fail to create. \n", status: 500
+          render json: "fail to create", status: 500
         end
       end
-      
+
+      private
+
+        def task_params
+          params.require(:task_params).permit(:name,:description,:user_id)
+        end
     end
   end
 end
