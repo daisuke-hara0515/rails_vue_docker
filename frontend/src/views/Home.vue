@@ -1,9 +1,19 @@
 <template>
     <div>
         <h3>管理画面</h3>
+        <br>
+        <div>
+        <label for="name">タスク名</label>
+        <br>
+        <input id="task" type="task" v-model="task">
+        <p>taks is {{task}}</p>
+
+        </div>
         <span class="header-item" @click="logout">ログアウト</span>
     </div>
 </template>
+
+
 
 <style scoped>
 .header-item {
