@@ -2,18 +2,28 @@
     <div>
         <h3>管理画面</h3>
         <br>
-        <div>
-        <label for="name">タスク名</label>
+        <label for="title">タイトル</label>
         <br>
-        <input id="task" type="task" v-model="task">
-        <p>taks is {{task}}</p>
+        <input 
+            id="title"
+            type="text"
+            v-model="title"
+        >
+        <p>{{ title }}</p>
 
-        </div>
         <span class="header-item" @click="logout">ログアウト</span>
     </div>
 </template>
 
-
+<script>
+export default {
+    data() {
+        return {
+            title: "",
+        };
+    }
+}
+</script>
 
 <style scoped>
 .header-item {
