@@ -10,6 +10,8 @@
         <input id="description" type="textarea" v-model="description">
         <br>
         <br>
+        <button>タスク作成</button>
+        <br>
         <span class="header-item" @click="logout">ログアウト</span>
     </div>
 </template>
