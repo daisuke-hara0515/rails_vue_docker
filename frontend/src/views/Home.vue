@@ -4,7 +4,11 @@
         <label for="taskname">タスク名</label>
         <br>
         <input id="taskname" type="text" v-model="taskname">
-        <p>{{taskname}}</p>
+        <br>
+        <label for="description">詳細</label>
+        <br>
+        <input id="description" type="textarea" v-model="description">
+        <br>
         <br>
         <span class="header-item" @click="logout">ログアウト</span>
     </div>
@@ -15,6 +19,7 @@ export default {
     data() {
         return {
             taskname: "",
+            description: "",
         };
     },
     methods: {
