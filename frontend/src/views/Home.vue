@@ -10,7 +10,7 @@
         <input id="description" type="textarea" v-model="description">
         <br>
         <br>
-        <button>タスク作成</button>
+        <button @click="createTask">タスク作成</button>
         <br>
         <span class="header-item" @click="logout">ログアウト</span>
     </div>
@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         createTask() {
-            
+
         },
         logout() {
             // store/index.jsのlogout関数を実行させるようにする
