@@ -116,7 +116,11 @@ export default new Vuex.Store({
             }, authData.expiresIn * 1000)
         },
         createTask() {
-            
+            axios.post('http://localhost:3000/v1/auth/tasks',
+            {
+                taskName:"",
+                description:""
+            })
         }
     }
 });
