@@ -114,6 +114,9 @@ export default new Vuex.Store({
             setTimeout(() => {
                 dispatch('refreshIdToken',authData.refreshToken);
             }, authData.expiresIn * 1000)
+        },
+        createTask() {
+            
         }
     }
 });
