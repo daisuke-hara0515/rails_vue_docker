@@ -1,16 +1,11 @@
 <template>
     <div>
         <h3>管理画面</h3>
+        <label for="taskname">タスク名</label>
         <br>
-        <label for="title">タイトル</label>
+        <input id="taskname" type="text" v-model="taskname">
+        <p>{{taskname}}</p>
         <br>
-        <input 
-            id="title"
-            type="text"
-            v-model="title"
-        >
-        <p>{{ title }}</p>
-
         <span class="header-item" @click="logout">ログアウト</span>
     </div>
 </template>
@@ -19,21 +14,9 @@
 export default {
     data() {
         return {
-            title: "",
+            taskname: "",
         };
-    }
-}
-</script>
-
-<style scoped>
-.header-item {
-    cursor: pointer;
-}
-</style>
-
-<script>
-
-export default {
+    },
     methods: {
         logout() {
             // store/index.jsのlogout関数を実行させるようにする
@@ -42,3 +25,9 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.header-item {
+    cursor: pointer;
+}
+</style>
