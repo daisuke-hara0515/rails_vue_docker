@@ -25,6 +25,9 @@ export default {
         };
     },
     methods: {
+        createTask() {
+            
+        },
         logout() {
             // store/index.jsのlogout関数を実行させるようにする
             this.$store.dispatch('logout');
