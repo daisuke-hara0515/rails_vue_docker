@@ -25,17 +25,15 @@ export default {
         };
     },
     methods: {
+        logout() {
+            // store/index.jsのlogout関数を実行させるようにする
+            this.$store.dispatch('logout');
+        },
         createTask() {
             this.$store.dispatch('createTask',{
                 taskName: this.taskName,
                 description: this.description,
-            })
-            this.taskName = ""
-            this.description = ""
-        },
-        logout() {
-            // store/index.jsのlogout関数を実行させるようにする
-            this.$store.dispatch('logout');
+            });
         }
     }
 };

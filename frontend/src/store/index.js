@@ -115,11 +115,11 @@ export default new Vuex.Store({
                 dispatch('refreshIdToken',authData.refreshToken);
             }, authData.expiresIn * 1000)
         },
-        createTask() {
+        createTask(createTaskData) {
             axios.post('http://localhost:3000/v1/auth/tasks',
             {
-                taskName:"",
-                description:""
+                taskName:createTaskData.taskName,
+                description:createTaskData.description,
             })
         }
     }
