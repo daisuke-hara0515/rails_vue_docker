@@ -118,8 +118,10 @@ export default new Vuex.Store({
         createTask(createTaskData) {
             axios.post('http://localhost:3000/v1/auth/tasks',
             {
-                taskName:createTaskData.taskName,
-                description:createTaskData.description,
+                    task_params:{
+                        taskName:createTaskData.taskName,
+                        description:createTaskData.description,
+                }
             })
         }
     }

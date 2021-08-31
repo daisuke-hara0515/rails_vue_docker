@@ -1,9 +1,9 @@
 <template>
     <div>
         <h3>管理画面</h3>
-        <label for="taskname">タスク名</label>
+        <label for="taskName">タスク名</label>
         <br>
-        <input id="taskname" type="text" v-model="taskname">
+        <input id="taskName" type="text" v-model="taskName">
         <br>
         <label for="description">詳細</label>
         <br>
@@ -20,7 +20,7 @@
 export default {
     data() {
         return {
-            taskname: "",
+            taskName: "",
             description: "",
         };
     },
@@ -32,8 +32,10 @@ export default {
         createTask() {
             this.$store.dispatch('createTask',{
                 taskName: this.taskName,
-                description: this.description,
-            });
+                description: this.description
+            })
+            this.taskName = "",
+            this.description = ""
         }
     }
 };
