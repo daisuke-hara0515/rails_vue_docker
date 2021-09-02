@@ -39,6 +39,8 @@ export default {
                     description: this.description
                 }
             })
+            this.taskName = ""
+            this.description = ""
         }
     }
 };
