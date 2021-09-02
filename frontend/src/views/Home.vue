@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
@@ -30,12 +32,13 @@ export default {
             this.$store.dispatch('logout');
         },
         createTask() {
-            this.$store.dispatch('createTask',{
-                taskName: this.taskName,
-                description: this.description
+            axios.post('http://localhost:3000/v1/auth/tasks',{
+                task_params:
+                {
+                    taskName: this.taskName,
+                    description: this.description
+                }
             })
-            this.taskName = "",
-            this.description = ""
         }
     }
 };
