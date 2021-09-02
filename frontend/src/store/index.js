@@ -114,6 +114,15 @@ export default new Vuex.Store({
             setTimeout(() => {
                 dispatch('refreshIdToken',authData.refreshToken);
             }, authData.expiresIn * 1000)
-        }
+        },
+        // createTask(createTaskData) {
+        //     axios.post('http://localhost:3000/v1/auth/tasks',
+        //     {
+        //             task_params:{
+        //                 taskName:createTaskData.taskName,
+        //                 description:createTaskData.description,
+        //         }
+        //     })
+        // }
     }
 });
