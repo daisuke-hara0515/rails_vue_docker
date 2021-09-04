@@ -15,6 +15,11 @@
         <span class="header-item" @click="logout">ログアウト</span>
         <div class="registered-tasks">
             <h4>登録されているタスク</h4>
+            <ul>
+                <li v-for="data in taskLists">
+                    名前: {{data.name}} 詳細: {{data.description}}
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -27,12 +32,13 @@ export default {
         return {
             taskName: "",
             description: "",
-            taskList: [],
+            taskLists: [],
         };
     },
     created() {
         axios.get('http://localhost:3000/v1/auth/tasks')
         .then(response => {
+            this.taskLists = response.data
             console.log(response);
         })
     },
