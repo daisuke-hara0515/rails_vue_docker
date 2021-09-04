@@ -35,7 +35,7 @@ export default {
             axios.post('http://localhost:3000/v1/auth/tasks',{
                 task_params:
                 {
-                    taskName: this.taskName,
+                    name: this.taskName,
                     description: this.description
                 }
             })
