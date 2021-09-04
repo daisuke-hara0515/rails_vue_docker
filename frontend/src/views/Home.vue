@@ -30,6 +30,12 @@ export default {
             taskList: [],
         };
     },
+    created() {
+        axios.get('http://localhost:3000/v1/auth/tasks')
+        .then(response => {
+            console.log(response);
+        })
+    },
     methods: {
         logout() {
             // store/index.jsのlogout関数を実行させるようにする
