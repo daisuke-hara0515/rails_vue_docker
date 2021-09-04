@@ -13,6 +13,14 @@
         <button @click="createTask">タスク作成</button>
         <br>
         <span class="header-item" @click="logout">ログアウト</span>
+        <div class="registered-tasks">
+            <h4>登録されているタスク</h4>
+            <ul>
+                <li v-for="data in taskLists">
+                    名前: {{data.name}} 詳細: {{data.description}}
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -24,7 +32,15 @@ export default {
         return {
             taskName: "",
             description: "",
+            taskLists: [],
         };
+    },
+    created() {
+        axios.get('http://localhost:3000/v1/auth/tasks')
+        .then(response => {
+            this.taskLists = response.data
+            console.log(response);
+        })
     },
     methods: {
         logout() {
@@ -35,7 +51,7 @@ export default {
             axios.post('http://localhost:3000/v1/auth/tasks',{
                 task_params:
                 {
-                    taskName: this.taskName,
+                    name: this.taskName,
                     description: this.description
                 }
             })
@@ -49,5 +65,11 @@ export default {
 <style scoped>
 .header-item {
     cursor: pointer;
+}
+
+.registered-tasks {
+    position: relative;
+    bottom: 200px;
+    left: 300px;
 }
 </style>
