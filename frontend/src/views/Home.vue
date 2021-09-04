@@ -13,6 +13,9 @@
         <button @click="createTask">タスク作成</button>
         <br>
         <span class="header-item" @click="logout">ログアウト</span>
+        <div class="registered-tasks">
+            <h4>登録されているタスク</h4>
+        </div>
     </div>
 </template>
 
@@ -49,5 +52,11 @@ export default {
 <style scoped>
 .header-item {
     cursor: pointer;
+}
+
+.registered-tasks {
+    position: relative;
+    bottom: 200px;
+    left: 300px;
 }
 </style>
