@@ -27,6 +27,7 @@ export default {
         return {
             taskName: "",
             description: "",
+            taskList: [],
         };
     },
     methods: {
