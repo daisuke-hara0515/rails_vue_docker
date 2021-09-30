@@ -16,7 +16,7 @@
         <div class="registered-tasks">
             <h4>登録されているタスク</h4>
             <ul>
-                <li v-for="data in taskLists">
+                <li v-for="data in taskLists" :key="data.id">
                     名前: {{data.name}} 詳細: {{data.description}}
                 </li>
             </ul>
