@@ -21,6 +21,11 @@
                 </li>
             </ul>
         </div>
+        <div>
+            <button type="submit" @click="fetchTasks()">fetchTasks</button>
+            <p>{{tasks}}</p>
+        
+        </div>
     </div>
 </template>
 
@@ -30,6 +35,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
+            tasks:"",
             taskName: "",
             description: "",
             taskLists: [],
@@ -43,6 +49,17 @@ export default {
         })
     },
     methods: {
+        fetchTasks() {
+            axios
+                .get('http://localhost:3000/v1/auth/tasks')
+                .then(response => {
+                    this.tasks = response.data;
+                })
+                .catch(error => {
+                    console.error(error)
+                });
+
+        },
         logout() {
             // store/index.jsのlogout関数を実行させるようにする
             this.$store.dispatch('logout');
