@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:3000';
 
-// const state = {
-//     tasks:[]
-// };
+const state = {
+    tasks:[]
+};
 
 // const getters = {
 //     tasks: tasks => state.tasks
