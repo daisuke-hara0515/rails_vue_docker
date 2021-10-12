@@ -31,15 +31,18 @@
 
 <script>
 import axios from 'axios';
+import {mapGetters, mapActions} from 'vuex';
 
 export default {
     data() {
         return {
-            tasks:"",
             taskName: "",
             description: "",
             taskLists: [],
         };
+    },
+    computed: {
+        ...mapGetters('tasks',['tasks']),
     },
     created() {
         axios.get('http://localhost:3000/v1/auth/tasks')
@@ -49,17 +52,7 @@ export default {
         })
     },
     methods: {
-        fetchTasks() {
-            axios
-                .get('http://localhost:3000/v1/auth/tasks')
-                .then(response => {
-                    this.tasks = response.data;
-                })
-                .catch(error => {
-                    console.error(error)
-                });
-
-        },
+        ...mapActions('tasks',['fetchTasks']),
         logout() {
             // store/index.jsのlogout関数を実行させるようにする
             this.$store.dispatch('logout');
