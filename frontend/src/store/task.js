@@ -20,3 +20,11 @@ const actions = {
         commit('setTasks',response.data);
     }
 }
+
+export default {
+    namespaced: true,
+    state,
+    getters,
+    mutations,
+    actions,
+};
