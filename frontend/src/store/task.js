@@ -8,11 +8,11 @@ const state = {
 
 const getters = {
     tasks: state => state.tasks
-}
+};
 
-// const mutations = {
-//     setTasks: (state, tasks) => (state.tasks = tasks)
-// }
+const mutations = {
+    setTasks: (state, tasks) => (state.tasks = tasks)
+}
 
 // const actions = {
 //     async fetchTasks({commit}) {
