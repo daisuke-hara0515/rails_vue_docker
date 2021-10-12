@@ -14,9 +14,9 @@ const mutations = {
     setTasks: (state, tasks) => (state.tasks = tasks)
 }
 
-// const actions = {
-//     async fetchTasks({commit}) {
-//         const response = await axios.get(`${apiUrl}/v1/auth/tasks`);
-//         console.log(response.data);
-//     }
-// }
+const actions = {
+    async fetchTasks({commit}) {
+        const response = await axios.get(`${apiUrl}/v1/auth/tasks`);
+        commit('setTasks',response.data);
+    }
+}
