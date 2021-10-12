@@ -6,9 +6,9 @@ const state = {
     tasks:[]
 };
 
-// const getters = {
-//     tasks: tasks => state.tasks
-// }
+const getters = {
+    tasks: state => state.tasks
+}
 
 // const mutations = {
 //     setTasks: (state, tasks) => (state.tasks = tasks)
