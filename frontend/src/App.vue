@@ -1,12 +1,13 @@
-// App.vueは一番大元のコンポーネント
 <template>
-  <div>
+  <v-app>
+    <div>
       <router-view></router-view>
-  </div>
+    </div>
+  </v-app>
 </template>
 
 <style scoped>
-.header-item{
-  padding: 10px;
-}
+  .header-item{
+    padding: 10px;
+  }
 </style>
